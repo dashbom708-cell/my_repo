@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Editor
+{% endblock %}
+
+{% block main %}
+<div class="editor-cont"> 
+    <h2>Edit tasks</h2>
+    <p>Add the details of your task here. Choose the appropriate action (execute, schedule, delegate, or cancel) and set a deadline.</p>
+    <form action="{{url_for(route)}}" method="post">
+        <input type="text" name="content" placeholder="enter your task" 
+        value="{% if task %}{{task.content}}{% endif %}" autocomplete="off">
+        <textarea type="text" name="note" placeholder="enter your task" autocomplete="off">{% if task %}{{task.note}}{% endif %}</textarea>
+        <div>
+            <select name="action">
+                {% if task %}
+                    <option value="{{action_name}}" selected hidden>{{action_name}}</option>
+                {% else %}
+                    <option value="" selected hidden>action</option>
+                {% endif %}
+                <option value="do">do</option>
+                <option value="schedule">schedule</option>
+                <option value="delegate">delegate</option>
+                <option value="eliminate">eliminate</option>
+            </select>
+            <input type="time" name="deadline" value="{% if task %}{{task.deadline}}{% endif %}">
+        </div>
+        <input type="hidden" name="task_id" value="{% if task %}{{task.id}}{% else %}task_id{% endif %}">
+        {% if task %}
+            <button type="submit">Edit</button>
+        {% else %}
+            <button type="submit">Add</button>
+        {% endif %}        
+    </form>
+</div>
+{% endblock %}

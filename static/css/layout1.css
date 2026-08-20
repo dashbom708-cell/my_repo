@@ -1,0 +1,48 @@
+/* AI-assisted: the @media responsive blocks in this file were added with Claude (Anthropic), at the developer's direction, to make the existing design mobile-responsive without changing the app's logic or original visual design. See README.md for full disclosure. */
+
+header {
+  background-color: var(--main-text);
+  height: 15vh;
+}
+
+nav {
+  border: 1px solid black;
+  width: 100%;
+  height: 100%;
+}
+
+nav ul {
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  list-style: none;
+  display: flex;
+}
+
+nav ul a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: var(--text-lg);
+  color: var(--bg-color);
+  font-weight: bold;
+  padding: 15px 30px;
+  border-top: 3px solid var(--secondary-color);
+}
+
+nav ul a:hover {
+  background-color: var(--primary-color);
+  color: var(--bg-color);
+}
+
+/* Responsive: let the header shrink to fit its content on small screens */
+@media (max-width: 576px) {
+  header {
+    height: auto;
+  }
+
+  nav ul a {
+    padding: 12px 15px;
+  }
+}

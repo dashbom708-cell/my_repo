@@ -1,0 +1,66 @@
+{# AI-assisted: the table-responsive wrapper div below was added with Claude (Anthropic), at the developer's direction, for mobile responsiveness only. See README.md for full disclosure. #}
+{% extends "base.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+<div class="history-cont">
+    <div class="search-cont">
+        <form action="{{url_for('views.search')}}" method="post">
+            <input type="text" name="search" placeholder="search" autocomplete="off">
+            <select name="date" id="">
+                {% if dates %}
+                <option value="" selected disabled hidden>date</option>
+                {% for date in dates %}
+                    <option value="{{date}}">{{date}}</option>
+                {% endfor %}
+                {% endif %}
+            </select>
+            <button type="submit" class="fa-brands fa-sistrix"></button>
+        </form>
+        <a href="{{url_for('views.back')}}" class="fa-solid fa-xmark"></a>
+    </div>
+    <div class="scroll-box">
+    <div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>task</th>
+                <th>note</th>
+                <th>action</th>
+                <th>deadline</th>
+                <th>status</th>
+                <th>created at</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if tasks %}
+                {% for task, action in tasks %}
+                    <tr>
+                        <td>{{loop.index}}</td>
+                        <td>{{task.content}}</td>
+                        <td>{{task.note}}</td>
+                        <td>{{action.name}}</td>
+                        <td>{{task.deadline}}</td>
+                        {% if task.status %}
+                            <td>done</td>
+                        {% else %}
+                            <td>undone</td>
+                        {% endif %}
+                        <td>{{task.created_at}}</td>
+                    </tr>                        
+                {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="10" align="center">no history yet</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+    </div>
+    </div>
+</div>
+{% endblock %}

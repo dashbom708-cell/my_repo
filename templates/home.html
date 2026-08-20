@@ -1,0 +1,90 @@
+{# AI-assisted: the table-responsive wrapper div below was added with Claude (Anthropic), at the developer's direction, for mobile responsiveness only. See README.md for full disclosure. #}
+{% extends "base.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+ 
+{% block main %}
+<div class="scroll-cont">
+    <div class="progress-bar">
+        {% if tasks %}
+            <span>{{completed_len}} of {{tasks | length}} done</span>
+            <div class="progress" style="width: {{(completed_len * 100) / (tasks | length)}}%;"></div>
+        {% else %}
+            <span>no progress yet</span>
+        {% endif %}
+    </div>
+    <div class="table-responsive">
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>task</th>
+                <th>note</th>
+                <th>action</th>
+                <th>deadline</th>
+                <th>status</th>
+                <th>created at</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if tasks %}
+            {% for task, action in tasks %}
+            <tr>
+                <td>
+                    <form action=" {{url_for('views.check')}}" method="post">
+                        {% if task.status %}
+                            <button class="fa-regular fa-square-check" type="submit"></button>
+                        {% else %}
+                            <button class="fa-regular fa-square" type="submit"></button>
+                        {% endif%}
+                        <input type="hidden" name="task_id" value="{{task.id}}">
+                    </form>
+                </td>
+                <td>{{loop.index}}</td> 
+                {% if task.status %}
+                    <td style="text-decoration: line-through;">{{task.content}}</td>
+                {% else %}
+                    <td>{{task.content}}</td>
+                {% endif %}
+                <td>{{task.note}}</td>
+                <td>{{action.name}}</td>
+                {% if task.deadline > c_time %}
+                    <td>{{task.deadline}}</td>
+                {% else %}
+                    <td style="background-color: var(--secondary-color); color: var(--surface-color); ">{{task.deadline}}</td>
+                {% endif %}
+                {% if task.status %}
+                    <td>Done</td>
+                {% else %}
+                    <td>Undone</td>
+                {% endif %}
+                <td>{{task.created_at}}</td>
+                <td>
+                    <form action=" {{url_for('views.edit')}}" method="post">
+                        <button class="fa-solid fa-pen-to-square" type="submit"></button>
+                        <input type="hidden" name="task_id" value="{{task.id}}">
+                    </form>
+                </td>
+                <td>
+                    <form action=" {{url_for('views.delete')}}" method="post">
+                        <button class="fa-solid fa-xmark" type="submit"></button>
+                        <input type="hidden" name="task_id" value="{{task.id}}">
+                    </form>
+                </td>
+            </tr>                        
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="10" align="center">no tasks yet</td>
+            </tr>
+            {% endif%}
+        </tbody>
+    </table>
+    </div>
+</div>
+{% endblock %}

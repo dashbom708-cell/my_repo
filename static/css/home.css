@@ -1,0 +1,104 @@
+/* AI-assisted: the @media responsive blocks in this file were added with Claude (Anthropic), at the developer's direction, to make the existing design mobile-responsive without changing the app's logic or original visual design. See README.md for full disclosure. */
+
+.scroll-cont {
+    width: 85%;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+table {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th:nth-child(3) { width: 20% }
+th:nth-child(4) { width: 30% }
+th:nth-child(5),th:nth-child(6),th:nth-child(7),th:nth-child(8) { width: 10% }
+th:nth-child(1),th:nth-child(2),th:nth-child(9),th:nth-child(10) { width: 3% }
+
+th, td {
+    border: 5px solid var(--surface-color);
+}
+
+thead {
+    background-color: var(--primary-color);
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+th {
+    color: var(--surface-color);
+    font-size: var(--text-xl);
+}
+
+td {
+    padding: 5px;
+    font-size: var(--text-lg);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td button {
+    border: none;
+}
+
+td:has(> form) {
+    text-align: center;
+}
+
+.progress-bar {
+    width: 40%;
+    height: 40px;
+    background-color: var(--bg-color);
+    border: 3px solid var(--surface-color);
+    border-radius: 2px;
+    margin: 10px auto;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background-color: var(--secondary-color);
+    border-radius: 0;
+}
+
+.progress-bar span {
+    font-size: var(--text-xl);
+    font-weight: bolder;
+    color: var(--main-text);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 1px 1px var(--primary-color);
+}
+
+/* Responsive: fit the sidebar-collapsed layout */
+@media (max-width: 768px) {
+    .scroll-cont {
+        width: 100%;
+        height: auto;
+        max-height: 75vh;
+        padding: 0 10px;
+    }
+
+    .progress-bar {
+        width: 90%;
+    }
+
+    /* Let columns size to their content instead of the fixed desktop percentages */
+    table {
+        table-layout: auto;
+    }
+
+    /* Hide the least essential columns (note, created at) so the task,
+       its status/action, and the edit/delete buttons stay visible together
+       without heavy horizontal scrolling */
+    th:nth-child(4), td:nth-child(4),
+    th:nth-child(8), td:nth-child(8) {
+        display: none;
+    }
+}

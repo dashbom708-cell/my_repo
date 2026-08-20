@@ -1,0 +1,157 @@
+/* AI-assisted: the @media responsive blocks in this file were added with Claude (Anthropic), at the developer's direction, to make the existing design mobile-responsive without changing the app's logic or original visual design. See README.md for full disclosure. */
+
+.history-cont {
+    width: 85vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.scroll-box {
+    height: 90vh;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    table-layout: fixed;
+    min-height: fit-content;
+    max-height: 100vh;
+    border-collapse: collapse;
+}
+
+th:nth-child(1) { width: 3% }
+th:nth-child(2) { width: 20% }
+th:nth-child(3) { width: 30% }
+th:nth-child(4),th:nth-child(5),th:nth-child(4) { width: 10% }
+th:nth-child(6) { width: 8% }
+
+th, td {
+    border: 5px solid var(--surface-color);
+}
+
+thead {
+    background-color: var(--main-text);
+    text-align: center;
+    position: sticky;
+    top: 0;
+}
+
+th {
+    color: var(--surface-color);
+    font-size: var(--text-xl);
+    padding: 10px;
+}
+
+td {
+    padding: 5px;
+    font-size: var(--text-lg);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+td button {
+    border: none;
+}
+
+td:has(> form) {
+    text-align: center;
+}
+
+.search-cont {
+    display: flex;
+    column-gap: 10px;
+    justify-content: center;
+}
+
+form {
+  margin: 5px 0;
+  display: flex; 
+  column-gap: 10px;
+  justify-content: center;
+  font-size: var(--text-lg);
+  
+}
+
+input, select, button, .search-cont a {
+    border: 2px solid var(--main-text);
+    border-radius: 3px;
+}
+
+form input{
+  padding: 5px 10px;  
+}
+
+form button, .search-cont a{
+  padding: 0 10px; 
+  background-color: var(--main-text);
+  color: var(--surface-color);
+}
+
+.search-cont a {
+  margin: 5px 0;
+  padding: 0 10px; 
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+/* Responsive: fit the sidebar-collapsed layout */
+@media (max-width: 768px) {
+  .history-cont {
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .scroll-box {
+    height: auto;
+    max-height: 65vh;
+  }
+
+  /* Let columns size to their content instead of the fixed desktop percentages */
+  table {
+    table-layout: auto;
+  }
+
+  /* Hide the least essential columns (note, created at) so the task and
+     its action/deadline/status stay visible together without heavy
+     horizontal scrolling */
+  th:nth-child(3), td:nth-child(3),
+  th:nth-child(7), td:nth-child(7) {
+    display: none;
+  }
+}
+
+/* Responsive: keep the search field, date select, search button and back
+   button visibly aligned together instead of stacking apart on narrow screens.
+   display:contents only changes how the form is painted (its fields become
+   direct flex items of .search-cont) - the form still submits normally. */
+@media (max-width: 480px) {
+  .search-cont {
+    flex-wrap: wrap;
+    row-gap: 10px;
+    justify-content: center;
+  }
+
+  .search-cont form {
+    display: contents;
+  }
+
+  .search-cont input[name="search"] {
+    order: 1;
+    flex: 1 1 60%;
+  }
+
+  .search-cont select {
+    order: 2;
+    flex: 1 1 30%;
+  }
+
+  .search-cont form button {
+    order: 3;
+  }
+
+  .search-cont > a {
+    order: 4;
+  }
+}

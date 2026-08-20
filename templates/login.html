@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block main %}
+<div class="head">
+    <h2>Login</h2>
+    <p>Welcome back! Please enter your account details to access your to-do list and organize your day effectively.</p>
+</div>
+<form action="{{ url_for('auth.login') }}" method="post">
+    <input type="email" name="email" placeholder="enter your email" autocomplete="off">
+    <input type="password" name="password" placeholder="enter your password" autocomplete="off">
+    <button type="submit">login</button>
+</form>
+{% endblock %}

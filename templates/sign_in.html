@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Sign-in
+{% endblock %}
+
+{% block main %}
+<div class="head">
+    <h2>Sign-in</h2>
+    <p>Start your time management journey! Create your new account now to begin prioritizing and completing your tasks.</p>
+</div>
+<form action="{{ url_for('auth.sign_in') }}" method="post">
+    <input type="text" name="full_name" placeholder="enter your full name" autocomplete="off">
+    <input type="email" name="email" placeholder="enter your email" autocomplete="off">
+    <input type="password" name="password" placeholder="enter your password">
+    <input type="password" name="confirm" placeholder="confirm your password">
+    <button type="submit">sign-in</button>
+</form>
+{% endblock %}

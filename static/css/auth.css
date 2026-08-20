@@ -1,0 +1,60 @@
+/* AI-assisted: the @media responsive blocks in this file were added with Claude (Anthropic), at the developer's direction, to make the existing design mobile-responsive without changing the app's logic or original visual design. See README.md for full disclosure. */
+
+.head {
+    margin: 20px 40px;
+}
+
+h2 {
+    font-size: var(--text-xxl);
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+p {
+    font-size: var(--text-xl);
+    color: var(--main-text);
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 40px;
+    font-size: var(--text-lg);
+    align-items: center;
+    margin: 50px 0;
+}
+
+input, button {
+    padding: 10px 40px;
+    border-radius: 2px;
+}
+
+input {
+    width: 50%;
+    padding: 10px 40px;
+    border: 2px solid var(--main-text);
+}
+
+button {
+    width: fit-content;
+    border: none;
+    background-color: var(--main-text);
+    color: var(--bg-color);
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+
+/* Responsive: widen inputs and tighten margins on small screens */
+@media (max-width: 576px) {
+    .head {
+        margin: 20px 15px;
+    }
+
+    input {
+        width: 90%;
+    }
+}

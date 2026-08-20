@@ -1,0 +1,86 @@
+/* AI-assisted: the @media responsive blocks in this file were added with Claude (Anthropic), at the developer's direction, to make the existing design mobile-responsive without changing the app's logic or original visual design. See README.md for full disclosure. */
+
+.editor-cont {
+    width: 85%;
+}
+
+.editor-cont h2 {
+    font-size: var(--text-xxl);
+    font-weight: bolder;
+    margin-top: 50px;
+    margin-left: 30px;
+    color: var(--primary-color);
+}
+
+.editor-cont p {
+    margin-left: 30px;
+    font-size: var(--text-lg);
+    color: var(--main-text);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 60%;
+    margin: 50px auto;
+    font-size: var(--text-lg);
+}
+
+input, textarea, select, button {
+    padding: 10px;
+    border: 2px solid var(--main-text);
+    border-radius: 2px;
+}
+
+button {
+    border: none;
+    width: fit-content;
+    align-self: center;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: var(--surface-color);
+    background-color: var(--main-text);
+}
+
+button:hover {
+    background-color: var(--primary-color);
+}
+
+form div {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+form div select, input[type="time"] {
+    width: 40%;
+}
+
+select option {
+    text-transform: capitalize;
+}
+
+/* Responsive: fit the sidebar-collapsed layout */
+@media (max-width: 768px) {
+    .editor-cont {
+        width: 100%;
+        padding: 0 15px;
+    }
+
+    form {
+        width: 100%;
+    }
+}
+
+/* Responsive: stack action + deadline fields on very small screens */
+@media (max-width: 480px) {
+    form div {
+        flex-direction: column;
+        row-gap: 10px;
+    }
+
+    form div select,
+    input[type="time"] {
+        width: 100%;
+    }
+}
